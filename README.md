@@ -1,8 +1,6 @@
 # Lamansys Challenge
 
 Selenium test automation task to implement:
-_____________________________________________
-
 1. Create public repo in Github
 2. Create Maven Java project
 3. Create Gmail test account
@@ -20,8 +18,8 @@ _____________________________________________
 6. Push the tests to github repository and provide URL.
 
 Please use OOP approach with Page Objects
---------------------------------------------------------
+_____________________________________________
 
 API test automation task to implement:
-_____________________________________________
+
 Test 2 APIs using Rest Assured, TestNG and Maven.
