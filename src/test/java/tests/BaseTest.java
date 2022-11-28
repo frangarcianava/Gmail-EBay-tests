@@ -3,7 +3,6 @@ package tests;
 import driver.MyDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Parameters;
@@ -11,9 +10,6 @@ import pom.GmailLoginPage;
 import pom.GmailMainPage;
 
 public class BaseTest {
-//    - Navigate to gmail.com page
-//- Login using valid credentials
-//- Verify success login by user profile icon in top right corner
 
     protected static MyDriver myDriver;
     protected static Logger log = LogManager.getLogger();
