@@ -1,5 +1,6 @@
 package pom;
 
+import constants.Constants;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -12,33 +13,47 @@ public class GmailLoginPage extends BasePage{
         super(driver);
     }
 
-    public static final String EMAIL = "franciscogarcianava93@gmail.com";
-    public static final String PASSWORD = "Fran0000.";
-
     @FindBy(id="identifierId")
     private WebElement emailField;
 
     @FindBy(css = "input[type=\"password\"]")
     private WebElement passwordField;
 
-    @Step("Login with valid credentials")
-    public GmailMainPage goToMainPage(){
+    @FindBy(css = "[role=\"presentation\"] [aria-live=\"assertive\"] > div > span")
+    private WebElement invalidPasswordMessage;
+
+    @FindBy(css = "div > h1")
+    private WebElement couldnSignInTitle;
+
+    public void fillCorrectEmail(){
         log.info("Filling Email");
-        fillEmail();
 
-        log.info("Filling password");
-        fillPassword();
-
-        return new GmailMainPage(getDriver());
-    }
-
-    public void fillEmail(){
-        completeField(emailField, EMAIL);
+        completeField(emailField, Constants.EMAIL);
         emailField.sendKeys(Keys.ENTER);
     }
 
-    public void fillPassword(){
-        completeField(passwordField, PASSWORD);
+    public GmailMainPage fillCorrectPassword(){
+        log.info("Filling password");
+
+        completeField(passwordField, Constants.PASSWORD);
         passwordField.sendKeys(Keys.ENTER);
+        return new GmailMainPage(getDriver());
+    }
+
+    public boolean fillIncorrectEmail() {
+        log.info("Filling Email");
+
+        completeField(emailField, Constants.WRONGEMAIL);
+        emailField.sendKeys(Keys.ENTER);
+
+        return couldnSignInTitle.isDisplayed();
+    }
+
+    public boolean fillIncorrectPassword(){
+        log.info("Filling password");
+        completeField(passwordField, Constants.WRONGPASSWORD);
+        passwordField.sendKeys(Keys.ENTER);
+
+        return invalidPasswordMessage.isDisplayed();
     }
 }
