@@ -1,6 +1,5 @@
 package driver;
 
-import constants.Constants;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,7 +12,7 @@ public class MyDriver
 {
     private WebDriver driver;
 
-    public  MyDriver(String browser) {
+    public  MyDriver(String browser, String url) {
         switch(browser){
             case "chrome":
                 WebDriverManager.chromedriver().setup();
@@ -28,7 +27,7 @@ public class MyDriver
                 driver = new FirefoxDriver();
                 break;
         }
-        driver.get(Constants.GMAILURL);
+        driver.get(url);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
     }

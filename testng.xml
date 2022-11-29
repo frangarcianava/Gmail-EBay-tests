@@ -6,8 +6,15 @@
         <listener class-name="listeners.AnnotationTransformer"/>
     </listeners>
     <test name="GmailTest">
+        <parameter name="url" value="https://www.gmail.com"/>
         <classes>
             <class name="tests.GmailTest"/>
+        </classes>
+    </test>
+    <test name="EbayTest">
+        <parameter name="url" value="https://www.ebay.com"/>
+        <classes>
+            <class name="tests.EbayTest"/>
         </classes>
     </test>
 </suite>
