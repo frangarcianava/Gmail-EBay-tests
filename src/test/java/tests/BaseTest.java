@@ -3,11 +3,8 @@ package tests;
 import driver.MyDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
-import pom.GmailLoginPage;
-import pom.GmailMainPage;
+import org.testng.annotations.*;
+import pom.*;
 
 public class BaseTest {
 
@@ -15,19 +12,20 @@ public class BaseTest {
     protected static Logger log = LogManager.getLogger();
     protected static GmailLoginPage gmailLoginPage;
     protected static GmailMainPage gmailMainPage;
+    protected static EbayMainPage ebayMainPage;
+    protected static EbayResultsPage ebayResultsPage;
+    protected static EbayProductPage ebayProductPage;
 
-    @Parameters({"browser"})
-    @BeforeSuite(alwaysRun = true)
-    public void setUp(String browser) {
+    @Parameters({"browser","url"})
+    @BeforeClass(alwaysRun = true)
+    public void setUp(String browser, String url) {
         log.info("Setting Up the driver...");
-        myDriver = new MyDriver(browser);
-        gmailLoginPage = new GmailLoginPage(myDriver.getDriver());
+        myDriver = new MyDriver(browser, url);
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         log.info("Closing the session...");
-        gmailMainPage.dispose();
         myDriver.getDriver().quit();
     }
 }

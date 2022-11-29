@@ -3,11 +3,14 @@ package tests;
 import constants.Constants;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pom.GmailLoginPage;
 
 public class GmailTest extends BaseTest{
 
     @Test(priority = 1, description = "Verify error messages with invalid credentials")
     public void validateUsernameError(){
+        gmailLoginPage = new GmailLoginPage(myDriver.getDriver());
+
         log.info("Validate result with incorrect email");
         Assert.assertTrue(gmailLoginPage.fillIncorrectEmail(), "The email is correct and this negative case cannot be validated.");
     }
@@ -28,6 +31,8 @@ public class GmailTest extends BaseTest{
         gmailMainPage = gmailLoginPage.fillCorrectPassword();
         Assert.assertTrue(gmailMainPage.btnRedactarIsPresent(), "The user is not on the main page.");
         Assert.assertTrue(gmailMainPage.getLoggedEmail().contains(Constants.EMAIL), "The user logged is not correct.");
+
+        gmailMainPage.dispose();
     }
 
 }
