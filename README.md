@@ -1,4 +1,4 @@
-# Lamansys Challenge
+# Gmail - EBay tests
 
 Selenium test automation task to implement:
 1. Create public repo in Github
